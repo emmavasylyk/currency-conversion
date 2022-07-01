@@ -11,7 +11,6 @@ import {
 } from 'redux-persist';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { currencyApi } from '../redux/currency-reduce';
-// import { fetchCurrency } from '../redux/currency-operations';
 import currencySlice from './currency-slice';
 import storage from 'redux-persist/lib/storage';
 
