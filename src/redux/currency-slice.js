@@ -15,17 +15,14 @@ const currencySlice = createSlice({
     builder.addMatcher(
       currencyApi.endpoints.fetchCurrency.matchFulfilled,
       (state, { payload }) => {
-        // console.log('payload0', payload);
         state.data = payload;
         state.result = payload.result;
-        // console.log('payload.data', payload.data);
       },
     );
 
     builder.addMatcher(
       currencyApi.endpoints.fetchCurrencyLatest.matchFulfilled,
       (state, { payload }) => {
-        console.log('payload', payload);
         state.dataUsd = payload;
         state.result = payload.result;
         state.rates = payload.rates;
@@ -35,7 +32,6 @@ const currencySlice = createSlice({
     builder.addMatcher(
       currencyApi.endpoints.fetchCurrencyUsd.matchFulfilled,
       (state, { payload }) => {
-        // console.log('payload', payload);
         state.dataUsd = payload;
         state.result = payload.result;
       },
@@ -43,7 +39,6 @@ const currencySlice = createSlice({
     builder.addMatcher(
       currencyApi.endpoints.fetchCurrencyEur.matchFulfilled,
       (state, { payload }) => {
-        // console.log('payload', payload);
         state.dataUsd = payload;
         state.result = payload.result;
       },
@@ -52,7 +47,6 @@ const currencySlice = createSlice({
     builder.addMatcher(
       currencyApi.endpoints.fetchCurrencyPln.matchFulfilled,
       (state, { payload }) => {
-        // console.log('payload', payload);
         state.dataUsd = payload;
         state.result = payload.result;
       },

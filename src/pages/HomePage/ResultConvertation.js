@@ -1,8 +1,8 @@
-import { useFetchCurrencyQuery } from '../redux/currency-reduce';
+import { useFetchCurrencyQuery } from '../../redux/currency-reduce';
 import { useSelector } from 'react-redux';
-import { getResult } from '../redux/currency-selectors';
+import { getResult } from '../../redux/currency-selectors';
 
-export const ResultTest = ({ transfer }) => {
+export const ResultConvertation = ({ transfer }) => {
   const result = useSelector(getResult);
   const { from, to, quantity } = transfer;
 
@@ -11,7 +11,6 @@ export const ResultTest = ({ transfer }) => {
     to,
     quantity,
   });
-  console.log('data', data);
 
   return (
     <>
@@ -21,6 +20,7 @@ export const ResultTest = ({ transfer }) => {
         <>Loading...</>
       ) : data ? (
         <h3>
+          <span>Result: </span>
           {result} {isFetching ? '...' : ''}
         </h3>
       ) : null}

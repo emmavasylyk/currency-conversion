@@ -1,18 +1,13 @@
-import { useFetchCurrencyUsdQuery } from '../../../redux/currency-reduce';
+import { useFetchCurrencyUsdQuery } from '../../redux/currency-reduce';
 import { useSelector } from 'react-redux';
-import { getResult } from '../../../redux/currency-selectors';
+import { getResult } from '../../redux/currency-selectors';
 
 export const UsdConvertation = ({ transfer }) => {
   const result = useSelector(getResult);
   const { quantity } = transfer;
-  // const { value } = transfer;
   const { data, error, isLoading, isFetching } = useFetchCurrencyUsdQuery({
     quantity,
   });
-
-  // const { data, error, isLoading, isFetching } = useFetchCurrencyEurQuery({
-  //   value,
-  // });
 
   return (
     <>
@@ -22,7 +17,9 @@ export const UsdConvertation = ({ transfer }) => {
         <>Loading...</>
       ) : data ? (
         <h3>
-          {result} {isFetching ? '...' : ''}
+          {' '}
+          Result: {result}
+          <span>$</span> {isFetching ? '...' : ''}
         </h3>
       ) : null}
     </>

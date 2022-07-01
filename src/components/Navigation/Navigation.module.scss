@@ -1,12 +1,13 @@
 .nav {
     padding: 40px 0;
     text-align: center;
-    background-color: midnightblue;
+    background-color: #282894cc;
 }
 
 .item {
     text-align: center;
     text-decoration: none;
+    text-transform: uppercase;
     color: #fff;
 
     &:not(:last-child) {
@@ -17,4 +18,5 @@
 .active {
     composes: item;
     color: rgb(159, 226, 243);
+    text-decoration: underline;
 }

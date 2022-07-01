@@ -1,6 +1,6 @@
-import { useFetchCurrencyPlnQuery } from '../../../redux/currency-reduce';
+import { useFetchCurrencyPlnQuery } from '../../redux/currency-reduce';
 import { useSelector } from 'react-redux';
-import { getResult } from '../../../redux/currency-selectors';
+import { getResult } from '../../redux/currency-selectors';
 
 export const PlnConvertation = ({ transfer }) => {
   const result = useSelector(getResult);
@@ -17,7 +17,7 @@ export const PlnConvertation = ({ transfer }) => {
         <>Loading...</>
       ) : data ? (
         <h3>
-          {result} {isFetching ? '...' : ''}
+          Result: {result} <span>zł</span> {isFetching ? '...' : ''}
         </h3>
       ) : null}
     </>

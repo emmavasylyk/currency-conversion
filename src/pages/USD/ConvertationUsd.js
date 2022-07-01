@@ -1,45 +1,37 @@
 import { useState } from 'react';
 import { UsdConvertation } from './UsdConvertation';
-// import { EurConversation } from '../EUR/EurConversation';
+import Button from '../../components/Button/Button';
+import s from './usd.module.scss';
 
 export default function ConvertationUsd() {
   const [quantity, setQuantity] = useState('');
-  // const [value, setValue] = useState('');
   const [transfer, setTransfer] = useState({});
 
   const hundleChange = e => {
-    const {
-      //   name,
-      value,
-    } = e.currentTarget;
-    // setValue(value);
+    const { value } = e.currentTarget;
     setQuantity(value);
   };
 
   const hundleSubmit = async e => {
     e.preventDefault();
-    // setTransfer({ value });
     setTransfer({ quantity });
   };
 
   return (
     <>
-      <div>
-        <form>
+      <div className={s.currencyWrapForm}>
+        <form className={s.form}>
           <input
+            className={s.inputConvertation}
             type="text"
             name="quantity"
-            placeholder="quantity"
-            // value={value}
+            placeholder="Quantity"
             value={quantity}
             onChange={hundleChange}
           />
-          <button type="submit" onClick={hundleSubmit}>
-            Сonvert
-          </button>
+          <Button onClick={hundleSubmit}>Сonvert</Button>
         </form>
         <UsdConvertation transfer={transfer} />
-        {/* <EurConversation transfer={transfer} /> */}
       </div>
     </>
   );
