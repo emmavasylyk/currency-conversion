@@ -17,8 +17,8 @@ export const EurConversation = ({ transfer }) => {
         <>Loading...</>
       ) : data ? (
         <h3>
-          Result: {result}
-          <span>€</span> {isFetching ? '...' : ''}
+          Result: {result && result.toFixed(2)} <span>€</span>{' '}
+          {isFetching ? '...' : ''}
         </h3>
       ) : null}
     </>

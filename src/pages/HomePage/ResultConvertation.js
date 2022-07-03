@@ -4,6 +4,7 @@ import { getResult } from '../../redux/currency-selectors';
 
 export const ResultConvertation = ({ transfer }) => {
   const result = useSelector(getResult);
+
   const { from, to, quantity } = transfer;
 
   const { data, error, isLoading, isFetching } = useFetchCurrencyQuery({
@@ -21,7 +22,7 @@ export const ResultConvertation = ({ transfer }) => {
       ) : data ? (
         <h3>
           <span>Result: </span>
-          {result} {isFetching ? '...' : ''}
+          {result && result.toFixed(2)} {isFetching ? '...' : ''}
         </h3>
       ) : null}
     </>

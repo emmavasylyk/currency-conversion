@@ -17,7 +17,8 @@ export const PlnConvertation = ({ transfer }) => {
         <>Loading...</>
       ) : data ? (
         <h3>
-          Result: {result} <span>zł</span> {isFetching ? '...' : ''}
+          Result: {result && result.toFixed(2)} <span>zł</span>{' '}
+          {isFetching ? '...' : ''}
         </h3>
       ) : null}
     </>
