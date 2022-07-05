@@ -29,7 +29,7 @@ export const currencyApi = createApi({
             ? [...result.map(({ id }) => ({ type: 'Post', id })), 'Post']
             : ['Post'],
       }),
-      invalidatesTags: ['Contact'],
+      invalidatesTags: ['Currency'],
     }),
     fetchCurrencyUsd: builder.query({
       query: ({ quantity }) => ({
@@ -39,7 +39,7 @@ export const currencyApi = createApi({
             ? [...result.map(({ id }) => ({ type: 'Post', id })), 'Post']
             : ['Post'],
       }),
-      invalidatesTags: ['Contact'],
+      invalidatesTags: ['Currency'],
     }),
     fetchCurrencyEur: builder.query({
       query: ({ quantity }) => ({
@@ -49,7 +49,7 @@ export const currencyApi = createApi({
             ? [...result.map(({ id }) => ({ type: 'Post', id })), 'Post']
             : ['Post'],
       }),
-      invalidatesTags: ['Contact'],
+      invalidatesTags: ['Currency'],
     }),
     fetchCurrencyPln: builder.query({
       query: ({ quantity }) => ({
@@ -59,7 +59,7 @@ export const currencyApi = createApi({
             ? [...result.map(({ id }) => ({ type: 'Post', id })), 'Post']
             : ['Post'],
       }),
-      invalidatesTags: ['Contact'],
+      invalidatesTags: ['Currency'],
     }),
   }),
 });
