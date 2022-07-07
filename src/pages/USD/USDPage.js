@@ -1,11 +1,11 @@
-import ConvertationUsd from './ConvertationUsd';
 import Container from '../../components/Container/Container';
+import ConvertationForm from '../../components/ConvertationForm/ConvertationForm';
 
 export default function USDPage() {
   return (
     <>
       <Container>
-        <ConvertationUsd />
+        <ConvertationForm name="&#36;" currencyName="USD" />
       </Container>
     </>
   );

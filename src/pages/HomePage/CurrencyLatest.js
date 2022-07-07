@@ -9,6 +9,7 @@ export const CurrencyLatest = () => {
   const { data, error, isLoading, isFetching } = useFetchCurrencyLatestQuery(
     {},
   );
+
   const values = Object.values(rates);
 
   return (
@@ -22,9 +23,9 @@ export const CurrencyLatest = () => {
         ) : data ? (
           <>
             <p className={s.currency}>
-              <span>EUR (€)</span>
-              <span>PLN (zł)</span>
-              <span>USD ($)</span>
+              <span>EUR (&#8364;)</span>
+              <span>PLN (&#122;&#322;)</span>
+              <span>USD (&#36;)</span>
             </p>
             <ul className={s.currency}>
               {values &&

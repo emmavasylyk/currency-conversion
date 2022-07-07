@@ -1,11 +1,11 @@
-import ConvertationPln from './ConvertationPln';
+import ConvertationForm from '../../components/ConvertationForm/ConvertationForm';
 import Container from '../../components/Container/Container';
 
-export default function USDPage() {
+export default function PLNPage() {
   return (
     <>
       <Container>
-        <ConvertationPln />
+        <ConvertationForm name="&#122;&#322;" currencyName="PLN" />
       </Container>
     </>
   );

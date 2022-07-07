@@ -1,20 +1,21 @@
+import { getRates } from '../../redux/currency-selectors';
+import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import { PlnConvertation } from './PlnConvertation';
+import { ExchangeResult } from '../ExchangeResult/ExchangeResult';
 import Button from '../../components/Button/Button';
-import s from './pln.module.scss';
+import s from './ConvertationForm.module.scss';
 
-export default function ConvertationPln() {
+export default function ConvertationForm({ currencyName, name }) {
   const [quantity, setQuantity] = useState('');
-  const [transfer, setTransfer] = useState({});
+  const [result, setResult] = useState(0);
 
-  const hundleChange = e => {
-    const { value } = e.currentTarget;
-    setQuantity(value);
-  };
+  const rate = useSelector(getRates);
+
+  const hundleChange = ({ target }) => setQuantity(target.value);
 
   const hundleSubmit = async e => {
     e.preventDefault();
-    setTransfer({ quantity });
+    setResult(rate[currencyName] * quantity);
   };
 
   return (
@@ -31,7 +32,7 @@ export default function ConvertationPln() {
           />
           <Button onClick={hundleSubmit}>Сonvert</Button>
         </form>
-        <PlnConvertation transfer={transfer} />
+        <ExchangeResult currency={name} transfer={result} />
       </div>
     </>
   );

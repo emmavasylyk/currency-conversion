@@ -21,6 +21,16 @@ export const currencyApi = createApi({
       }),
       invalidatesTags: ['Currency'],
     }),
+    fetchCurrencyEur: builder.query({
+      query: () => ({
+        url: '/latest?base=EUR&symbols=USD,UAH,PLN',
+        providesTags: (result, error, arg) =>
+          result
+            ? [...result.map(({ id }) => ({ type: 'Post', id })), 'Post']
+            : ['Post'],
+      }),
+      invalidatesTags: ['Currency'],
+    }),
     fetchCurrencyLatest: builder.query({
       query: () => ({
         url: '/latest?base=UAH&symbols=USD,EUR,PLN',
@@ -31,29 +41,21 @@ export const currencyApi = createApi({
       }),
       invalidatesTags: ['Currency'],
     }),
-    fetchCurrencyUsd: builder.query({
-      query: ({ quantity }) => ({
-        url: `/convert?from=UAH&to=USD&amount=${quantity}`,
-        providesTags: (result, error, arg) =>
-          result
-            ? [...result.map(({ id }) => ({ type: 'Post', id })), 'Post']
-            : ['Post'],
-      }),
-      invalidatesTags: ['Currency'],
-    }),
-    fetchCurrencyEur: builder.query({
-      query: ({ quantity }) => ({
-        url: `/convert?from=UAH&to=EUR&amount=${quantity}`,
-        providesTags: (result, error, arg) =>
-          result
-            ? [...result.map(({ id }) => ({ type: 'Post', id })), 'Post']
-            : ['Post'],
-      }),
-      invalidatesTags: ['Currency'],
-    }),
+
     fetchCurrencyPln: builder.query({
-      query: ({ quantity }) => ({
-        url: `/convert?from=UAH&to=PLN&amount=${quantity}`,
+      query: () => ({
+        url: '/latest?base=PLN&symbols=USD,UAH,EUR',
+        providesTags: (result, error, arg) =>
+          result
+            ? [...result.map(({ id }) => ({ type: 'Post', id })), 'Post']
+            : ['Post'],
+      }),
+      invalidatesTags: ['Currency'],
+    }),
+
+    fetchCurrencyUsd: builder.query({
+      query: () => ({
+        url: '/latest?base=USD&symbols=PLN,UAH,EUR',
         providesTags: (result, error, arg) =>
           result
             ? [...result.map(({ id }) => ({ type: 'Post', id })), 'Post']
@@ -66,8 +68,8 @@ export const currencyApi = createApi({
 
 export const {
   useFetchCurrencyQuery,
-  useFetchCurrencyUsdQuery,
-  useFetchCurrencyEurQuery,
-  useFetchCurrencyPlnQuery,
   useFetchCurrencyLatestQuery,
+  useFetchCurrencyEurQuery,
+  useFetchCurrencyUsdQuery,
+  useFetchCurrencyPlnQuery,
 } = currencyApi;

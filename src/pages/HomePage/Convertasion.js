@@ -1,39 +1,60 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import {
+  getRates,
+  getRatesUsd,
+  getRatesEur,
+  getRatesPln,
+} from '../../redux/currency-selectors';
+import {
+  useFetchCurrencyEurQuery,
+  useFetchCurrencyUsdQuery,
+  useFetchCurrencyPlnQuery,
+} from '../../redux/currency-reduce';
+
 import { ResultConvertation } from './ResultConvertation';
 import Button from '../../components/Button/Button';
 import s from './HomePage.module.scss';
 
+const availableRate = ['USD', 'PLN', 'EUR', 'UAH'];
+
 export default function Convertasion() {
-  const [quantity, setQuantity] = useState('');
-  const [from, setFrom] = useState('');
-  const [to, setTo] = useState('');
-  const [transfer, setTransfer] = useState({});
+  useFetchCurrencyEurQuery();
+  useFetchCurrencyUsdQuery();
+  useFetchCurrencyPlnQuery();
 
-  const hundleChange = e => {
-    const { name, value } = e.currentTarget;
+  const rate = useSelector(getRates);
+  const rateUsd = useSelector(getRatesUsd);
+  const rateEur = useSelector(getRatesEur);
+  const ratePln = useSelector(getRatesPln);
 
-    switch (name) {
-      case 'quantity':
-        setQuantity(value);
-        break;
+  const [result, setResult] = useState(0);
+  const [currencyData, setCurrencyData] = useState({});
 
-      case 'from':
-        setFrom(value);
-        break;
+  const hundleChange = ({ target }) => {
+    const { name, value } = target;
 
-      case 'to':
-        setTo(value);
-        break;
-
-      default:
-        return;
-    }
+    setCurrencyData(prev => {
+      return { ...prev, [name]: value };
+    });
   };
 
   const hundleSubmit = async e => {
     e.preventDefault();
+    const currentRates = {
+      UAH: rate,
+      USD: rateUsd,
+      EUR: rateEur,
+      PLN: ratePln,
+    };
 
-    setTransfer({ from, to, quantity });
+    const rateFrom = currencyData?.from?.toUpperCase();
+    const rateTo = currencyData?.to?.toUpperCase();
+    const quantity = currencyData?.quantity;
+
+    if (availableRate.includes(rateFrom)) {
+      setResult(currentRates[rateFrom][rateTo] * quantity);
+    }
   };
 
   return (
@@ -45,7 +66,7 @@ export default function Convertasion() {
             className={s.inputConvertation}
             type="text"
             name="from"
-            value={from}
+            value={currencyData?.from || ''}
             placeholder="From"
             onChange={hundleChange}
           />
@@ -53,7 +74,7 @@ export default function Convertasion() {
             className={s.inputConvertation}
             type="text"
             name="to"
-            value={to}
+            value={currencyData?.to || ''}
             placeholder="To"
             onChange={hundleChange}
           />
@@ -62,12 +83,12 @@ export default function Convertasion() {
             type="text"
             name="quantity"
             placeholder="Quantity"
-            value={quantity}
+            value={currencyData?.quantity || ''}
             onChange={hundleChange}
           />
           <Button onClick={hundleSubmit}>Сonvert</Button>
         </form>
-        <ResultConvertation transfer={transfer} />
+        <ResultConvertation transfer={result} />
       </div>
     </>
   );
