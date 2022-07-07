@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export const ExchangeResult = ({ transfer, currency }) => {
   return (
     <>
@@ -6,4 +8,9 @@ export const ExchangeResult = ({ transfer, currency }) => {
       </p>
     </>
   );
+};
+
+ExchangeResult.protoTypes = {
+  currency: PropTypes.string,
+  transfer: PropTypes.number,
 };

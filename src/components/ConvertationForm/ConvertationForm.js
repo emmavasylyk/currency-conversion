@@ -1,6 +1,7 @@
-import { getRates } from '../../redux/currency-selectors';
-import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+import { getRates } from '../../redux/currency-selectors';
 import { ExchangeResult } from '../ExchangeResult/ExchangeResult';
 import Button from '../../components/Button/Button';
 import s from './ConvertationForm.module.scss';
@@ -37,3 +38,7 @@ export default function ConvertationForm({ currencyName, name }) {
     </>
   );
 }
+ConvertationForm.protoTypes = {
+  name: PropTypes.string,
+  currencyName: PropTypes.string,
+};
